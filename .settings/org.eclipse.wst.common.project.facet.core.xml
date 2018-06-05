@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <runtime name="java-1.8.0-openjdk-1.8.0.161-0.b14.el7_4.x86_64"/>
+  <installed facet="java" version="1.8"/>
+  <installed facet="jpt.jpa" version="2.1"/>
+</faceted-project>
