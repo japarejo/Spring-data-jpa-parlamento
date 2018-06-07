@@ -24,14 +24,18 @@ public class Sesion implements Serializable {
 	@Column(nullable=false)
 	private Date fecha;
 
-	@Column(name="fk_organo", nullable=false, precision=10)
-	private Long fkOrgano;
+	@ManyToOne
+	@JoinColumn(name="fk_organo")
+	private Organo organo;
 
-	@Column(name="fk_sala", precision=10)
-	private Long fkSala;
+	@ManyToOne(optional=false)
+	@JoinColumn(name="fk_sala")
+	private Sala sala;
+	
 
-	@Column(name="fk_tipo_sesion", nullable=false, precision=10)
-	private Long fkTipoSesion;
+	@ManyToOne(optional=false)
+	@JoinColumn(name="fk_tipo_sesion")
+	private Sesion tipoSesion;
 
 	@Column(name="hora_fin")
 	private Timestamp horaFin;
@@ -64,30 +68,7 @@ public class Sesion implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public Long getFkOrgano() {
-		return this.fkOrgano;
-	}
-
-	public void setFkOrgano(Long fkOrgano) {
-		this.fkOrgano = fkOrgano;
-	}
-
-	public Long getFkSala() {
-		return this.fkSala;
-	}
-
-	public void setFkSala(Long fkSala) {
-		this.fkSala = fkSala;
-	}
-
-	public Long getFkTipoSesion() {
-		return this.fkTipoSesion;
-	}
-
-	public void setFkTipoSesion(Long fkTipoSesion) {
-		this.fkTipoSesion = fkTipoSesion;
-	}
-
+	
 	public Timestamp getHoraFin() {
 		return this.horaFin;
 	}
@@ -106,6 +87,30 @@ public class Sesion implements Serializable {
 
 	public Long getLegislatura() {
 		return this.legislatura;
+	}
+
+	public Organo getOrgano() {
+		return organo;
+	}
+
+	public void setOrgano(Organo organo) {
+		this.organo = organo;
+	}
+
+	public Sala getSala() {
+		return sala;
+	}
+
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+
+	public Sesion getTipoSesion() {
+		return tipoSesion;
+	}
+
+	public void setTipoSesion(Sesion tipoSesion) {
+		this.tipoSesion = tipoSesion;
 	}
 
 	public void setLegislatura(Long legislatura) {

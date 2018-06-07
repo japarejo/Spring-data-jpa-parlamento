@@ -1,6 +1,9 @@
 package com.japarejo.springdatajpaexercise.model.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -18,7 +21,7 @@ public class Organo implements Serializable {
 	@Column(unique=true, nullable=false, precision=10)
 	private long id;
 
-	@Column(nullable=false, length=100)
+	@Column(name="abreviatura",nullable=false, length=100)
 	private String abreaviatura;
 
 	@Column(nullable=false, length=100)
@@ -27,7 +30,19 @@ public class Organo implements Serializable {
 	@Column(precision=10)
 	private Long orden;
 
+	@Transient
+	private List<Parlamentario> miembros;
+	
 	public Organo() {
+		miembros=new ArrayList<Parlamentario>();
+	}
+
+	public List<Parlamentario> getMiembros() {
+		return miembros;
+	}
+
+	public void setMiembros(List<Parlamentario> miembros) {
+		this.miembros = miembros;
 	}
 
 	public long getId() {
