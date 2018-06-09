@@ -6,5 +6,6 @@
 		<class>com.japarejo.springdatajpaexercise.model.entities.Sesion</class>
 		<class>com.japarejo.springdatajpaexercise.model.entities.TipoSesion</class>
 		<class>com.japarejo.springdatajpaexercise.model.entities.Usuario</class>
+		<class>com.japarejo.springdatajpaexercise.model.entities.Parlamentario</class>
 	</persistence-unit>
 </persistence>

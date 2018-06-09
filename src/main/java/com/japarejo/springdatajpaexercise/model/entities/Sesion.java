@@ -35,7 +35,7 @@ public class Sesion implements Serializable {
 
 	@ManyToOne(optional=false)
 	@JoinColumn(name="fk_tipo_sesion")
-	private Sesion tipoSesion;
+	private TipoSesion tipoSesion;
 
 	@Column(name="hora_fin")
 	private Timestamp horaFin;
@@ -105,11 +105,11 @@ public class Sesion implements Serializable {
 		this.sala = sala;
 	}
 
-	public Sesion getTipoSesion() {
+	public TipoSesion getTipoSesion() {
 		return tipoSesion;
 	}
 
-	public void setTipoSesion(Sesion tipoSesion) {
+	public void setTipoSesion(TipoSesion tipoSesion) {
 		this.tipoSesion = tipoSesion;
 	}
 

@@ -30,7 +30,7 @@ public class Organo implements Serializable {
 	@Column(precision=10)
 	private Long orden;
 
-	@Transient
+	@ManyToMany(targetEntity=Parlamentario.class,fetch=FetchType.EAGER)
 	private List<Parlamentario> miembros;
 	
 	public Organo() {
