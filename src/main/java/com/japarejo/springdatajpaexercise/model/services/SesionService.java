@@ -75,7 +75,8 @@ public class SesionService {
 			leerSesion(sesion,in);
 			sesionRepo.save(sesion);
 			System.out.println("Sesion actualizado con éxito!");
-			organoService.printOrganos();
+			// TODO: Descomentar
+			//organoService.printOrganos();
 		}else
 			System.out.println("Sesion con Id '"+id+" no encontrada.");
 	}
@@ -137,13 +138,15 @@ public class SesionService {
 		System.out.println("Indique el Id del órgano que realiza la  sesión:");
 		if(s.getOrgano()!=null)
 			System.out.println("    - Valor actual: "+s.getOrgano().getId()+" ("+s.getOrgano().getDescripcion()+")");
-		organoService.printOrganos();
+		
+		// TODO: Descomentar
+		/*		 		 
 		String organoId=in.readLine();
 		Long idOrgano=Long.parseLong(organoId);
 		Optional<Organo> organo=organoService.findById(idOrgano);
 		if(organo.isPresent())
 			s.setOrgano(organo.get());
-
+		*/
 		
 		System.out.println("Indique el Id del tipo de sesion de la  sesión:");
 		if(s.getTipoSesion()!=null)

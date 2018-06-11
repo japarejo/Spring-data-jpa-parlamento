@@ -24,8 +24,7 @@ public class Sesion implements Serializable {
 	@Column(nullable=false)
 	private Date fecha;
 
-	@ManyToOne
-	@JoinColumn(name="fk_organo")
+	@Transient
 	private Organo organo;
 
 	@ManyToOne(optional=false)

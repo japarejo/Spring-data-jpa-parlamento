@@ -83,15 +83,19 @@ public class ParlamentarioService {
 			for(Organo organo:parlamentario.getOrganos())
 				System.out.println(organo.getId()+" ("+organo.getDescripcion()+ "),");
 		}
-		organoService.printOrganos();
+		// TODO: Descomentar
+		//organoService.printOrganos();
 		String organos=in.readLine();
 		String[] arrayOrganos=organos.split(",");
 		parlamentario.getOrganos().clear();
 		for(String organoId:arrayOrganos) {
-			if(!"".equals(organoId)) {				
+			if(!"".equals(organoId)) {
+				// TODO: Descomentar
+				/*
 				Optional<Organo> organo=organoService.findById(Long.parseLong(organoId));
 				if(organo.isPresent())
 					parlamentario.getOrganos().add(organo.get());
+					*/
 			}
 		}
 		

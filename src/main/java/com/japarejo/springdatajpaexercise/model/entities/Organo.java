@@ -11,26 +11,22 @@ import javax.persistence.*;
  * The persistent class for the ORGANO database table.
  * 
  */
-@Entity
-@Table(name="ORGANO")
+
 public class Organo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false, precision=10)
 	private long id;
 
-	@Column(name="abreviatura",nullable=false, length=100)
+
 	private String abreaviatura;
 
-	@Column(nullable=false, length=100)
+
 	private String descripcion;
 
-	@Column(precision=10)
+
 	private Long orden;
 
-	@ManyToMany(targetEntity=Parlamentario.class,fetch=FetchType.EAGER)
+	@Transient
 	private List<Parlamentario> miembros;
 	
 	public Organo() {

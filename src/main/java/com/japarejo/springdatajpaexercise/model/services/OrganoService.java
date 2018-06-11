@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.japarejo.springdatajpaexercise.model.entities.Organo;
 import com.japarejo.springdatajpaexercise.model.entities.Parlamentario;
-import com.japarejo.springdatajpaexercise.model.repositories.OrganoRepository;
+//import com.japarejo.springdatajpaexercise.model.repositories.OrganoRepository;
 
 @Service
 public class OrganoService {
-
+/*
 	@Autowired
 	private OrganoRepository organoRepo;
 	
@@ -100,11 +100,7 @@ public class OrganoService {
 					{ "GPC", "G.P. Ciudadanos", "4" } };
 			Organo organo = null;
 			for (int i = 0; i < organos.length; i++) {
-				organo = new Organo();
-				organo.setAbreaviatura(organos[i][0]);
-				organo.setDescripcion(organos[i][1]);
-				organo.setOrden(Long.valueOf(organos[i][2]));
-				organoRepo.save(organo);
+				 // TODO: completar
 			}
 			System.out.println("Done!");
 			
@@ -131,5 +127,5 @@ public class OrganoService {
 	public Optional<Organo> findById(Long idOrgano) {
 		return organoRepo.findById(idOrgano);
 	}
-
+  */
 }

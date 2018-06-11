@@ -22,7 +22,6 @@ import com.japarejo.springdatajpaexercise.model.entities.Parlamentario;
 import com.japarejo.springdatajpaexercise.model.entities.Sala;
 import com.japarejo.springdatajpaexercise.model.entities.Sesion;
 import com.japarejo.springdatajpaexercise.model.entities.TipoSesion;
-import com.japarejo.springdatajpaexercise.model.repositories.OrganoRepository;
 import com.japarejo.springdatajpaexercise.model.repositories.ParlamentarioRepository;
 import com.japarejo.springdatajpaexercise.model.repositories.SalaRepository;
 import com.japarejo.springdatajpaexercise.model.repositories.TipoSesionRepository;
@@ -78,7 +77,8 @@ public class SpringDataJpaExerciseApplication implements CommandLineRunner {
 		BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
 		// Inicialización de datos:
 		tipoSesionService.initializeTipoSesion();
-		organoService.initializeOrganos();
+		// TODO: Descomentar:
+		//organoService.initializeOrganos();
 		salaService.initializeSalas();
 		// Menú:
 		String command="";
@@ -230,7 +230,8 @@ public class SpringDataJpaExerciseApplication implements CommandLineRunner {
 			}
 			break;
 		case ORGANO:
-			switch(accion) {
+			// TODO: Descomentar
+			/*switch(accion) {
 			case MOSTRARMODIFICIAR:
 				organoService.printOrganos(in);
 				break;
@@ -242,7 +243,7 @@ public class SpringDataJpaExerciseApplication implements CommandLineRunner {
 				System.out.println("Indique el parlamentario que desea borrar:");
 				organoService.borrarOrgano(in);
 				break;
-			}
+			}*/
 			break;
 		 
 		}						
