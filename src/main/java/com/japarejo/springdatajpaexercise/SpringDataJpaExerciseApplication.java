@@ -79,6 +79,7 @@ public class SpringDataJpaExerciseApplication implements CommandLineRunner {
 		// Inicialización de datos:
 		tipoSesionService.initializeTipoSesion();
 		organoService.initializeOrganos();
+		salaService.initializeSalas();
 		// Menú:
 		String command="";
 		do {

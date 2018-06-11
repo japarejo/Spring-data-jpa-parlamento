@@ -39,6 +39,7 @@ public class ParlamentarioService {
 
 	public void printParlamentarios(Iterable<Parlamentario> findAll) {
 		for(Parlamentario parlamentario:findAll) {
+			System.out.print(parlamentario.getNombre());
 			System.out.print("   -> Organos: ");
 			for(Organo organo:parlamentario.getOrganos())
 				System.out.println(organo.getId()+" ("+organo.getDescripcion()+ "),");
