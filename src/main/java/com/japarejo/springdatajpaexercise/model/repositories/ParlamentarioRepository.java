@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ParlamentarioRepository extends CrudRepository<Parlamentario,Long> {
 
+	Parlamentario findByNombre(String nombre);
+
 }

@@ -132,4 +132,8 @@ public class OrganoService {
 		return organoRepo.findById(idOrgano);
 	}
 
+	public Organo findByAbreviatura(String string) {
+		return organoRepo.findByAbreaviatura(string);
+	}
+
 }

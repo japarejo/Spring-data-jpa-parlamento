@@ -26,6 +26,7 @@ import com.japarejo.springdatajpaexercise.model.repositories.OrganoRepository;
 import com.japarejo.springdatajpaexercise.model.repositories.ParlamentarioRepository;
 import com.japarejo.springdatajpaexercise.model.repositories.SalaRepository;
 import com.japarejo.springdatajpaexercise.model.repositories.TipoSesionRepository;
+import com.japarejo.springdatajpaexercise.model.services.AlternanciaService;
 import com.japarejo.springdatajpaexercise.model.services.OrganoService;
 import com.japarejo.springdatajpaexercise.model.services.ParlamentarioService;
 import com.japarejo.springdatajpaexercise.model.services.SalaService;
@@ -43,10 +44,11 @@ public class SpringDataJpaExerciseApplication implements CommandLineRunner {
 	public static final String MOSTRARMODIFICIAR = "mostrar/modificar";
 	public static final String INSERTAR = "insertar";
 	public static final String BORRAR = "borrar";
+	public static final String ALTERNANCIA = "alternancia";
 	public static final String ERROR = "error";
 	public static final String ATRAS = "back";
 	public static final String SALIR = "exit";
-	public static final String[] opciones = { MOSTRARMODIFICIAR, INSERTAR, BORRAR };
+	public static final String[] opciones = { MOSTRARMODIFICIAR, INSERTAR, BORRAR, ALTERNANCIA };
 
 	// ENTIDADES:
 	public static final String SALA = "Sala";
@@ -66,29 +68,38 @@ public class SpringDataJpaExerciseApplication implements CommandLineRunner {
 	private SesionService sesionService;
 	@Autowired
 	private ParlamentarioService parlamentarioService;
+	@Autowired
+	private AlternanciaService alternanciaService;
 
-	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringDataJpaExerciseApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		// Inicialización de datos:
 		tipoSesionService.initializeTipoSesion();
 		organoService.initializeOrganos();
 		salaService.initializeSalas();
 		// Menú:
-		String command="";
+		String command = "";
 		do {
-			mostrarMenuGeneral();
-			command=in.readLine();
-			command=interpretarComando(command,in);
-			if(!command.equals(SALIR) && !command.equals(ERROR))
-				mostrarMenuDatos(command,in);
-		}while(!command.equals(SALIR) );
+			try {
+
+				mostrarMenuGeneral();
+				command = in.readLine();
+				command = interpretarComando(command, in);
+				if (command.equals(ALTERNANCIA))
+					alternanciaService.alternancia();
+				if (!command.equals(SALIR) && !command.equals(ERROR) && !command.equals(ALTERNANCIA))
+					mostrarMenuDatos(command, in);
+			} catch (Throwable t) {
+				System.out.println(t.getMessage());
+				t.printStackTrace();
+			}
+		} while (!command.equals(SALIR));
 		System.out.println("Adiós!");
 	}
 
@@ -138,16 +149,16 @@ public class SpringDataJpaExerciseApplication implements CommandLineRunner {
 		System.out.println("#============================#");
 		System.out.println("# PARLAMENTO COMMANDER v1.0  #");
 		System.out.println("#----------------------------#");
-		System.out.println("# "+accion+" datos    #");
+		System.out.println("# " + accion + " datos    #");
 		System.out.println("#============================#");
-		System.out.println("Seleccione la entidad a "+accion+":");
+		System.out.println("Seleccione la entidad a " + accion + ":");
 		System.out.println("------------------------------");
-		int i=0;
-		for(String entidad:entidades) {
-			System.out.println("["+i+"] - "+entidad);
+		int i = 0;
+		for (String entidad : entidades) {
+			System.out.println("[" + i + "] - " + entidad);
 			i++;
 		}
-		System.out.println("["+i+"] - Volver");
+		System.out.println("[" + i + "] - Volver");
 	}
 
 	private void mostrarMenuGeneral() {
@@ -164,13 +175,14 @@ public class SpringDataJpaExerciseApplication implements CommandLineRunner {
 		System.out.println("[" + i + "] - Salir");
 	}
 
-	
-	
-	private void ejecutarAccionEntidad(String accion, String entidad,BufferedReader in) throws IOException {
-		
-		switch(entidad) {		
-		case SALA:				
-			switch(accion) {
+	private void ejecutarAccionEntidad(String accion, String entidad, BufferedReader in) throws IOException {
+		try {
+			switch (entidad) {
+			case ALTERNANCIA:
+				alternanciaService.alternancia();
+				break;
+			case SALA:
+				switch (accion) {
 				case MOSTRARMODIFICIAR:
 					salaService.printSalas(in);
 					break;
@@ -182,10 +194,10 @@ public class SpringDataJpaExerciseApplication implements CommandLineRunner {
 					System.out.println("Indique la sala que desea borrar:");
 					salaService.borrarSala(in);
 					break;
-			}
-			break;
-		case SESION:				
-			switch(accion) {
+				}
+				break;
+			case SESION:
+				switch (accion) {
 				case MOSTRARMODIFICIAR:
 					sesionService.printSesiones(in);
 					break;
@@ -197,56 +209,59 @@ public class SpringDataJpaExerciseApplication implements CommandLineRunner {
 					System.out.println("Indique la sala que desea borrar:");
 					sesionService.borrarSesion(in);
 					break;
+				}
+				break;
+			case TIPOSESION:
+				switch (accion) {
+				case MOSTRARMODIFICIAR:
+					tipoSesionService.printTipoSesion(in);
+					break;
+				case INSERTAR:
+					tipoSesionService.insertarTipoSesion(in);
+					break;
+				case BORRAR:
+					tipoSesionService.printTiposSesion();
+					System.out.println("Indique el tipo de sesión que desea borrar:");
+					tipoSesionService.borrarTipoSesion(in);
+					break;
+				}
+				break;
+			case PARLAMENTARIO:
+				switch (accion) {
+				case MOSTRARMODIFICIAR:
+					parlamentarioService.printParlamentario(in);
+					break;
+				case INSERTAR:
+					parlamentarioService.insertarParlamentario(in);
+					break;
+				case BORRAR:
+					parlamentarioService.printParlamentarios();
+					System.out.println("Indique el parlamentario que desea borrar:");
+					parlamentarioService.borrarInsertarParlamentario(in);
+					break;
+				}
+				break;
+			case ORGANO:
+				switch (accion) {
+				case MOSTRARMODIFICIAR:
+					organoService.printOrganos(in);
+					break;
+				case INSERTAR:
+					organoService.insertarOrgano(in);
+					break;
+				case BORRAR:
+					organoService.printOrganos();
+					System.out.println("Indique el parlamentario que desea borrar:");
+					organoService.borrarOrgano(in);
+					break;
+				}
+				break;
+
 			}
-			break;
-		case TIPOSESION:
-			switch(accion) {
-			case MOSTRARMODIFICIAR:
-				tipoSesionService.printTipoSesion(in);
-				break;
-			case INSERTAR:
-				tipoSesionService.insertarTipoSesion(in);
-				break;
-			case BORRAR:
-				tipoSesionService.printTiposSesion();
-				System.out.println("Indique el tipo de sesión que desea borrar:");
-				tipoSesionService.borrarTipoSesion(in);
-				break;
+		} catch (Throwable t) {
+			System.out.println(t.getMessage());
+			t.printStackTrace();
 		}
-			break;
-		case PARLAMENTARIO:
-			switch(accion) {
-			case MOSTRARMODIFICIAR:
-				parlamentarioService.printParlamentario(in);
-				break;
-			case INSERTAR:
-				parlamentarioService.insertarParlamentario(in);
-				break;
-			case BORRAR:
-				parlamentarioService.printParlamentarios();
-				System.out.println("Indique el parlamentario que desea borrar:");
-				parlamentarioService.borrarInsertarParlamentario(in);
-				break;
-			}
-			break;
-		case ORGANO:
-			switch(accion) {
-			case MOSTRARMODIFICIAR:
-				organoService.printOrganos(in);
-				break;
-			case INSERTAR:
-				organoService.insertarOrgano(in);
-				break;
-			case BORRAR:
-				organoService.printOrganos();
-				System.out.println("Indique el parlamentario que desea borrar:");
-				organoService.borrarOrgano(in);
-				break;
-			}
-			break;
-		 
-		}						
-		
 	}
 
 }

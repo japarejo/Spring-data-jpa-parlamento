@@ -2,6 +2,8 @@ package com.japarejo.springdatajpaexercise.model.services;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +97,29 @@ public class ParlamentarioService {
 			}
 		}
 		
+	}
+
+	public void resetOrganos() {
+		Iterable<Parlamentario> parlamentarios=parlamentarioRepo.findAll();
+		List<Organo> organosAElminar=new ArrayList<>();
+		for(Parlamentario parlamentario:parlamentarios) {
+			organosAElminar.clear();
+			for(Organo organo:parlamentario.getOrganos())
+				if(!organo.getDescripcion().startsWith("G.P."))
+					organosAElminar.add(organo);
+			parlamentario.getOrganos().removeAll(organosAElminar);
+			parlamentarioRepo.save(parlamentario);
+		}
+		
+	}
+
+	public void save(Parlamentario parlamentario) {
+		parlamentarioRepo.save(parlamentario);
+		
+	}
+
+	public Parlamentario findByNombre(String nombre) {
+		return parlamentarioRepo.findByNombre(nombre);
 	}
 
 }

@@ -8,4 +8,6 @@ import com.japarejo.springdatajpaexercise.model.entities.Organo;
 @Repository
 public interface OrganoRepository extends CrudRepository<Organo, Long> {
 
+	Organo findByAbreaviatura(String string);
+
 }
