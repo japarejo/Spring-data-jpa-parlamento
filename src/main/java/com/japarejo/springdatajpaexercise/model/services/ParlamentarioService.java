@@ -8,6 +8,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.japarejo.springdatajpaexercise.model.entities.Organo;
 import com.japarejo.springdatajpaexercise.model.entities.Parlamentario;
@@ -41,10 +43,12 @@ public class ParlamentarioService {
 
 	public void printParlamentarios(Iterable<Parlamentario> findAll) {
 		for(Parlamentario parlamentario:findAll) {
-			System.out.print(parlamentario.getNombre());
+			System.out.print(parlamentario.getId()+" - "+parlamentario.getNombre());
 			System.out.print("   -> Organos: ");
 			for(Organo organo:parlamentario.getOrganos())
 				System.out.println(organo.getId()+" ("+organo.getDescripcion()+ "),");
+			if(parlamentario.getOrganos().isEmpty())
+				System.out.println();
 		}
 		
 	}
@@ -113,6 +117,7 @@ public class ParlamentarioService {
 		
 	}
 
+	@Transactional(propagation=Propagation.NESTED)
 	public void save(Parlamentario parlamentario) {
 		parlamentarioRepo.save(parlamentario);
 		
