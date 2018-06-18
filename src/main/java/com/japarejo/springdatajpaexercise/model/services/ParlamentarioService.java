@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.japarejo.springdatajpaexercise.model.entities.Organo;
 import com.japarejo.springdatajpaexercise.model.entities.Parlamentario;
-import com.japarejo.springdatajpaexercise.model.repositories.ParlamentarioRepository;
+import com.japarejo.springdatajpaexercise.model.repositories.bd1.ParlamentarioRepository;
 
 @Service
 public class ParlamentarioService {

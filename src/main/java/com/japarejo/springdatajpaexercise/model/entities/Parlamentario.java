@@ -9,7 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 import com.sun.org.apache.xalan.internal.xsltc.dom.ArrayNodeListIterator;
 
@@ -24,7 +27,7 @@ public class Parlamentario {
 	@Column(nullable=false)
 	private String nombre;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@Transient
 	private List<Organo> organos;
 	
 	public Parlamentario() {

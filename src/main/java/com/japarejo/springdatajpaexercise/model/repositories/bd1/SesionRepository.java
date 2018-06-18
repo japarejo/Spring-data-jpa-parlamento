@@ -1,4 +1,4 @@
-package com.japarejo.springdatajpaexercise.model.repositories;
+package com.japarejo.springdatajpaexercise.model.repositories.bd1;
 
 import com.japarejo.springdatajpaexercise.model.entities.Organo;
 import com.japarejo.springdatajpaexercise.model.entities.Sala;

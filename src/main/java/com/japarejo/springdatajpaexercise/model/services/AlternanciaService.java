@@ -14,7 +14,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import com.japarejo.springdatajpaexercise.model.entities.Organo;
 import com.japarejo.springdatajpaexercise.model.entities.Parlamentario;
-import com.japarejo.springdatajpaexercise.model.repositories.ParlamentarioRepository;
+import com.japarejo.springdatajpaexercise.model.repositories.bd1.ParlamentarioRepository;
 
 @Service
 public class AlternanciaService {
@@ -31,6 +31,7 @@ public class AlternanciaService {
 
 	@Autowired
 	OrganoService organoService;
+	
 	private TransactionTemplate transactionTemplate;
 
 	public AlternanciaService(PlatformTransactionManager transactionManager) {
@@ -38,23 +39,24 @@ public class AlternanciaService {
 	} 
 
 	
-	
+	@Transactional
 	public void alternancia() throws CutreMasterException, CasoplonException {		
-		/*transactionTemplate.execute(
+		
+		transactionTemplate.execute(
 				  new TransactionCallbackWithoutResult() { 
 				   protected void doInTransactionWithoutResult(TransactionStatus status) {
-				    try {*/
+				    try {
 				    	
 				    	parlamentarioService.resetOrganos();
 						List<Parlamentario> parlamentarios = crearUObtenerParlamentarios();
 						modificarOrganos(parlamentarios); 
 				    
-				    /*
+				    
 				    } catch (CutreMasterException | CasoplonException ex) {
 				       status.setRollbackOnly(); 
 				    } 
 				   } 
-				  }); */
+				  }); 
 
 		
 	}
@@ -76,7 +78,8 @@ public class AlternanciaService {
 			}
 			parlamentario.getOrganos().add(mesa);
 			parlamentario.getOrganos().add(juntaPortavoces);
-			parlamentario.getOrganos().add(gobierno);
+			if(gobierno!=null)
+				parlamentario.getOrganos().add(gobierno);
 			parlamentarioService.save(parlamentario);
 			i++;
 		}

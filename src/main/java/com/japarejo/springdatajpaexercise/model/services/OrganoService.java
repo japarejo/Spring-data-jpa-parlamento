@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.japarejo.springdatajpaexercise.model.entities.Organo;
 import com.japarejo.springdatajpaexercise.model.entities.Parlamentario;
-import com.japarejo.springdatajpaexercise.model.repositories.OrganoRepository;
+import com.japarejo.springdatajpaexercise.model.repositories.bd1.OrganoRepository;
 
 @Service
 public class OrganoService {

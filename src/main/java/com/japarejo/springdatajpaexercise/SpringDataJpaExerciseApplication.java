@@ -16,29 +16,31 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.japarejo.springdatajpaexercise.model.entities.Organo;
 import com.japarejo.springdatajpaexercise.model.entities.Parlamentario;
 import com.japarejo.springdatajpaexercise.model.entities.Sala;
 import com.japarejo.springdatajpaexercise.model.entities.Sesion;
 import com.japarejo.springdatajpaexercise.model.entities.TipoSesion;
-import com.japarejo.springdatajpaexercise.model.repositories.OrganoRepository;
-import com.japarejo.springdatajpaexercise.model.repositories.ParlamentarioRepository;
-import com.japarejo.springdatajpaexercise.model.repositories.SalaRepository;
-import com.japarejo.springdatajpaexercise.model.repositories.TipoSesionRepository;
+import com.japarejo.springdatajpaexercise.model.repositories.bd1.OrganoRepository;
+import com.japarejo.springdatajpaexercise.model.repositories.bd1.ParlamentarioRepository;
+import com.japarejo.springdatajpaexercise.model.repositories.bd1.SalaRepository;
+import com.japarejo.springdatajpaexercise.model.repositories.bd1.SesionRepository;
+import com.japarejo.springdatajpaexercise.model.repositories.bd1.TipoSesionRepository;
 import com.japarejo.springdatajpaexercise.model.services.AlternanciaService;
 import com.japarejo.springdatajpaexercise.model.services.OrganoService;
 import com.japarejo.springdatajpaexercise.model.services.ParlamentarioService;
 import com.japarejo.springdatajpaexercise.model.services.SalaService;
 import com.japarejo.springdatajpaexercise.model.services.SesionService;
 import com.japarejo.springdatajpaexercise.model.services.TipoSesionService;
-import com.japarejo.springdatajpaexercise.model.repositories.SesionRepository;
 import com.sun.media.sound.ModelStandardTransform;
 
 import jdk.nashorn.internal.parser.Lexer.LexerToken;
 
 @SpringBootApplication
 @EnableAutoConfiguration
+@EnableTransactionManagement
 public class SpringDataJpaExerciseApplication implements CommandLineRunner {
 	// COMANDOS:
 	public static final String MOSTRARMODIFICIAR = "mostrar/modificar";

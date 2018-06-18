@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.japarejo.springdatajpaexercise.model.entities.TipoSesion;
-import com.japarejo.springdatajpaexercise.model.repositories.TipoSesionRepository;
+import com.japarejo.springdatajpaexercise.model.repositories.bd1.TipoSesionRepository;
 
 @Service
 public class TipoSesionService {

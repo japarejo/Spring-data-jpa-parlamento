@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.japarejo.springdatajpaexercise.model.entities.Organo;
 import com.japarejo.springdatajpaexercise.model.entities.Sala;
-import com.japarejo.springdatajpaexercise.model.repositories.SalaRepository;
+import com.japarejo.springdatajpaexercise.model.repositories.bd1.SalaRepository;
 
 @Service
 public class SalaService {	

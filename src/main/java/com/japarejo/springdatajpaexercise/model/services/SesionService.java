@@ -13,7 +13,7 @@ import com.japarejo.springdatajpaexercise.model.entities.Organo;
 import com.japarejo.springdatajpaexercise.model.entities.Sala;
 import com.japarejo.springdatajpaexercise.model.entities.Sesion;
 import com.japarejo.springdatajpaexercise.model.entities.TipoSesion;
-import com.japarejo.springdatajpaexercise.model.repositories.SesionRepository;
+import com.japarejo.springdatajpaexercise.model.repositories.bd1.SesionRepository;
 
 @Service
 public class SesionService {

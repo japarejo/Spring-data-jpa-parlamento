@@ -1,4 +1,4 @@
-package com.japarejo.springdatajpaexercise.model.repositories;
+package com.japarejo.springdatajpaexercise.model.repositories.bd2;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
