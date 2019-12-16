@@ -117,7 +117,7 @@ public class ParlamentarioService {
 		
 	}
 
-	@Transactional(propagation=Propagation.NESTED)
+	//@Transactional(propagation=Propagation.NESTED)
 	public void save(Parlamentario parlamentario) {
 		parlamentarioRepo.save(parlamentario);
 		
